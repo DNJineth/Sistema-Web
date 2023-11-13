@@ -24,3 +24,19 @@ Route::resource('estudiantes', 'EstudiantesController',['except'=>['create','edi
 Route::post("login","EstudiantesController@login");
 
 Route::post("unity/login","EstudiantesController@login");
+
+
+Route::get("prueba", function(){
+    return response(["data"=>"hola"]);
+});
+
+Route::get('dashboard', function () {
+    return view('dash.index');
+});
+Route::get('gestion-estudiantes', "EstudiantesController@index")->name('gestion-estudiantes');
+
+///PROTOCOLOS HTTP
+/// GET para obtener
+/// POST para enviar datos
+///PUT para actualizar
+///DELETE para eliminar 

@@ -97,6 +97,12 @@
             <form action="{{ url('estudiantes') }}" method="post" role="form" class="php-email-form">
             @csrf
               <div class="row">
+
+              
+              <div class="form-group col-md-6">
+                  <label for="name">Cedula</label>
+                  <input type="text" name="cedula" class="form-control" id="cedula" placeholder="Número de documento" required>
+                </div>
               <div class="form-group col-md-6">
                   <label for="name">Código Estudiante</label>
                   <input type="text" name="Codigo" class="form-control" id="name" placeholder="Código Estudiante" required>

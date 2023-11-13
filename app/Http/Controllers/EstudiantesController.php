@@ -16,7 +16,9 @@ class EstudiantesController extends Controller
     public function index()
     {
         $estudiantes=Estudiantes::all();
-        return response($estudiantes);
+        //return response($estudiantes);
+        return view('dash.estudiantes', compact('estudiantes'))->with('success', 'Datos listados correctamente');
+       
     }
 
     /**
@@ -37,12 +39,26 @@ class EstudiantesController extends Controller
      */
     public function store(Request $request)
     {
+
+       
         $crear_estudiante=new Estudiantes;
+        
+        $crear_estudiante->cedula=$request->cedula;
         $crear_estudiante->Codigo_estudiante=$request->Codigo;
         $crear_estudiante->Nombres_completos=$request->nombres;
         $crear_estudiante->correo=$request->email;
         $crear_estudiante->password=md5($request->password);
-        $crear_estudiante->save();
+        //$crear_estudiante->save();
+        // Crear un array con los datos que quieres pasar a la vista
+    $datos = [
+        'cedula' => $crear_estudiante->cedula,
+        'Codigo_estudiante' => $crear_estudiante->Codigo_estudiante,
+        'Nombres_completos' => $crear_estudiante->Nombres_completos,
+        'correo' => $crear_estudiante->correo,
+    ];
+
+    // Redirigir a la vista de dashboard con los datos
+    return view('dash.perfil', compact('datos'))->with('success', 'Datos guardados correctamente');
         return response("Datos guardados correctamente");
     }
 
@@ -56,6 +72,7 @@ class EstudiantesController extends Controller
           if($data==null){
             $data =  new \stdClass();
             $data->status="Error";
+            return redirect()->back()->with('error', 'your message,here');   
             return response()->json($data);
           }else{
             $data->status="Ok";

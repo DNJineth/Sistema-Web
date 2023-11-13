@@ -50,11 +50,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-        <li><a class="nav-link scrollto active" href="{{ url('/') }}">Inicio</a></li>
-          <li><a class="nav-link scrollto" href="{{ url('/') }}">Sobre el proyecto</a></li>
+        <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
+          <li><a class="nav-link scrollto" href="#about">Sobre el proyecto</a></li>
         
-          <li><a class="nav-link scrollto" href="{{ url('/') }}">Equipo</a></li>
-          <li><a class="nav-link scrollto" href="{{ url('/') }}">Evolución</a></li>
+          <li><a class="nav-link scrollto" href="#team">Equipo</a></li>
+          <li><a class="nav-link scrollto" href="#portfolio">Evolución</a></li>
           <li><a class="getstarted scrollto" href="{{ url('formulario') }}">Descargar Herramienta</a></li>
 
 
