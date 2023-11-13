@@ -48,7 +48,7 @@ class EstudiantesController extends Controller
         $crear_estudiante->Nombres_completos=$request->nombres;
         $crear_estudiante->correo=$request->email;
         $crear_estudiante->password=md5($request->password);
-        //$crear_estudiante->save();
+        $crear_estudiante->save();
         // Crear un array con los datos que quieres pasar a la vista
     $datos = [
         'cedula' => $crear_estudiante->cedula,
