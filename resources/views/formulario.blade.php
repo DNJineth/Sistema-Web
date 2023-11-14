@@ -135,6 +135,12 @@
           <h2>Inicia Sesión Para Descargar Nuestra Aplicación </h2>
           <p>¿No tienes cuenta aún? <a href="#" id="activar_registros">Registrate Aqui</a></p>
         </div>
+        @if(session('error'))
+          <div class="alert alert-danger" role="alert">
+           El correo o la contraseña son incorrectos
+          </div>
+        @endif
+   
         <div class="row justify-content-center  ">
           <!-- inicio de sesion -->
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
@@ -213,9 +219,16 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
   <!-- Template Main JS File -->
+  
+ 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/myscript.js"></script>
-  
+  @if(session('error'))
+  <script >
+     $(".registro").hide();
+      $(".sesion").show();
+  </script>
+  @endif
 </body>
 
 </html>

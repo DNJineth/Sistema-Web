@@ -21,7 +21,7 @@ Route::get('formulario', function () {
 });
 Route::resource('estudiantes', 'EstudiantesController',['except'=>['create','edit']]);
 
-Route::post("login","EstudiantesController@login");
+Route::post("login","EstudiantesController@login_web");
 
 Route::post("unity/login","EstudiantesController@login");
 

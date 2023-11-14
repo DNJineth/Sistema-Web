@@ -72,14 +72,35 @@ class EstudiantesController extends Controller
           if($data==null){
             $data =  new \stdClass();
             $data->status="Error";
-            return redirect()->back()->with('error', 'your message,here');   
+             
             return response()->json($data);
           }else{
             $data->status="Ok";
+           
             return response()->json($data);
           }
     }
 
+
+    
+    public function login_web(Request $request){
+        $data=DB::table("estudiantes")->where(
+            [ 
+                ["correo","=",$request->email],
+                ["password","=",md5($request->pass)],
+            ]   
+          )->first();
+          if($data==null){
+            $data =  new \stdClass();
+            $data->status="Error";
+            return redirect()->back()->with('error', 'your message,here');   
+            return response()->json($data);
+          }else{
+            $data->status="Ok";
+            return view('dash.perfil')->with('success', 'Datos guardados correctamente');
+            return response()->json($data);
+          }
+    }
 
 
     /**
