@@ -73,7 +73,7 @@
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1>Herramienta de softwere con realidad aumentada</h1>
+          <h1>Herramienta de software con realidad aumentada</h1>
           <h2>Para el apoyo en el rendimiento académico de la asignatura Estructuras de Información</h2>
           <div>
             <a href="#about" class="btn-get-started scrollto">Descargar Herramienta</a>
