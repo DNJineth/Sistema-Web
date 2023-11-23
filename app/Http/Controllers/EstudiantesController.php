@@ -58,6 +58,8 @@ class EstudiantesController extends Controller
         'Nombres_completos' => $crear_estudiante->Nombres_completos,
         'correo' => $crear_estudiante->correo,
     ];
+   
+    session(['usuario' => $crear_estudiante]);
     return Redirect::route('gestion-perfil');
     // Redirigir a la vista de dashboard con los datos
     return view('dash.perfil', compact('datos'))->with('success', 'Datos guardados correctamente');
