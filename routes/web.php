@@ -34,7 +34,8 @@ Route::get('dashboard', function () {
     return view('dash.index');
 });
 Route::get('gestion-estudiantes', "EstudiantesController@index")->name('gestion-estudiantes');
-
+Route::get('gestion-perfil', "EstudiantesController@perfil")->name('gestion-perfil');
+Route::get('gestion-curso', "EstudiantesController@avanze_curso")->name('gestion-curso');
 ///PROTOCOLOS HTTP
 /// GET para obtener
 /// POST para enviar datos

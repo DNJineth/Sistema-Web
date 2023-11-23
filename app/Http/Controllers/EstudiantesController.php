@@ -6,6 +6,8 @@ use App\Models\Estudiantes;
 use Illuminate\Http\Request;
 use DB;
 use \stdClass;
+use Illuminate\Support\Facades\Redirect;
+
 class EstudiantesController extends Controller
 {
     /**
@@ -97,6 +99,8 @@ class EstudiantesController extends Controller
             return response()->json($data);
           }else{
             $data->status="Ok";
+            session(['usuario' => $data]);
+            return Redirect::route('gestion-perfil');
             return view('dash.perfil')->with('success', 'Datos guardados correctamente');
             return response()->json($data);
           }
@@ -146,5 +150,19 @@ class EstudiantesController extends Controller
     public function destroy(Estudiantes $estudiantes)
     {
         //
+    }
+
+    public function perfil(){
+        
+        $usuarioAlmacenado = session('usuario');
+        
+        //return response($estudiantes);
+        return view('dash.perfil', compact('usuarioAlmacenado'))->with('success', 'Datos listados correctamente');
+    }
+
+    public function avanze_curso(){
+        $curso=[];
+        return view('dash.avanze', compact('curso'))->with('success', 'Datos listados correctamente');
+
     }
 }

@@ -57,7 +57,7 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('gestion-perfil') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>perfil</span></a>
             </li>
@@ -85,16 +85,16 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Gestión Cursos
+                Progreso de curso
             </div>
 
            
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('gestion-curso') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Cursos</span></a>
+                    <span>Progreso de Cursos</span></a>
             </li>
 
             
