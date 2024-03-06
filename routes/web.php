@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 Route::get('formulario', function () {
     return view('formulario');
-});
+})->name('salir');;
 Route::resource('estudiantes', 'EstudiantesController',['except'=>['create','edit']]);
 
 Route::post("login","EstudiantesController@login_web");

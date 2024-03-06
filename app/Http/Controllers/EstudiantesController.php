@@ -88,6 +88,22 @@ class EstudiantesController extends Controller
 
     
     public function login_web(Request $request){
+      
+        if($request->email=="administrador@mentorydata.tech" && $request->pass=="123456789" ){
+            session(['admin' => "estudiante"]);
+            $data =  new \stdClass();
+            $data->cedula="11111";
+            $data->Codigo_estudiante="I01111";
+            $data->Nombres_completos="Administrador";
+            $data->correo="administrador@mentorydata.tech";
+            session(['usuario' => $data]);
+            session()->forget('rol');
+            session(['admin' => "administrador"]);
+            return Redirect::route('gestion-perfil');
+        }
+
+      
+
         $data=DB::table("estudiantes")->where(
             [ 
                 ["correo","=",$request->email],
@@ -102,6 +118,8 @@ class EstudiantesController extends Controller
           }else{
             $data->status="Ok";
             session(['usuario' => $data]);
+            session()->forget('admin');
+            session(['rol' => "estudiante"]);
             return Redirect::route('gestion-perfil');
             return view('dash.perfil')->with('success', 'Datos guardados correctamente');
             return response()->json($data);

@@ -55,7 +55,7 @@
         
           <li><a class="nav-link scrollto" href="{{ url('/') }}">Equipo</a></li>
           <li><a class="nav-link scrollto" href="{{ url('/') }}">Evolución</a></li>
-          <li><a class="getstarted scrollto" href="{{ url('formulario') }}">Descargar Herramienta</a></li>
+          <li><a class="getstarted scrollto" href="{{ url('formulario') }}">Iniciar Sesión / Login</a></li>
 
 
           

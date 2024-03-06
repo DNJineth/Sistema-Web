@@ -55,7 +55,7 @@
         
           <li><a class="nav-link scrollto" href="#team">Equipo</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Evolución</a></li>
-          <li><a class="getstarted scrollto" href="{{ url('formulario') }}">Descargar Herramienta</a></li>
+          <li><a class="getstarted scrollto" href="{{ url('formulario') }}">Iniciar Sesión / Login</a></li>
 
 
 
@@ -75,9 +75,7 @@
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <h1>Herramienta de software con realidad aumentada</h1>
           <h2>Para el apoyo en el rendimiento académico de la asignatura Estructuras de Información</h2>
-          <div>
-            <a href="#about" class="btn-get-started scrollto">Descargar Herramienta</a>
-          </div>
+         
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
           <img src="assets/img/hero-img.svg" class="img-fluid animated" alt="">

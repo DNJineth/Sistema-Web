@@ -51,7 +51,12 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
+           
+
+          
+
+            @if(session()->has('rol'))
+               <!-- Heading -->
             <div class="sidebar-heading">
             Gestión Personal
             </div>
@@ -61,25 +66,7 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>perfil</span></a>
             </li>
-
             
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Gestión Estudiantes
-            </div>
-
-           
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('gestion-estudiantes') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Estudiantes</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -87,16 +74,53 @@
             <div class="sidebar-heading">
                 Progreso de curso
             </div>
-
-           
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
+               <!-- Nav Item - Charts -->
+               <li class="nav-item">
                 <a class="nav-link" href="{{ route('gestion-curso') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Progreso de Cursos</span></a>
             </li>
 
+            @endif
+            @if(session()->has('admin'))
+                 <!-- Heading -->
+            <div class="sidebar-heading">
+            Gestión Personal
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('gestion-perfil') }}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>perfil</span></a>
+            </li>
+             <!-- Divider -->
+             <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Gestión Estudiantes
+            </div>
+                <!-- Nav Item - Charts -->
+                <li class="nav-item">
+                <a class="nav-link" href="{{ route('gestion-estudiantes') }}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Estudiantes</span></a>
+            </li>
+            @endif
+          
+           
+           
+
+        
+
+            <li class="nav-item active">
+                <a class="nav-link" href="https://mentorydata.tech/dash/v2.0.4%20arregloscheck.apk">
+                    <i class="fas fa-fw fa-trophy"></i>
+                    <span>Descargar Apk</span></a>
+            </li>
+
+            
+         
             
 
             <!-- Divider -->
@@ -160,26 +184,25 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">User name</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@if(session()->has('usuario'))
+                                    {{ session('usuario')->Nombres_completos }}
+                                @endif</span>
                                 <img class="img-profile rounded-circle"
                                     src="dash/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('gestion-perfil') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configuracion
-                                </a>
+                               
                                
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#">
+                                <a class="dropdown-item" href="{{ route('salir') }}" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Salir
                                 </a>
                             </div>
                         </li>
