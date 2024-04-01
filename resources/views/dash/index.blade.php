@@ -127,7 +127,7 @@
         
 
             <li class="nav-item active">
-                <a class="nav-link" href="https://mentorydata.tech/dash/v2.0.4%20arregloscheck.apk">
+                <a class="nav-link" href="https://mentorydata.tech/dash/v2.0.5.apk">
                     <i class="fas fa-fw fa-trophy"></i>
                     <span>Descargar Apk</span></a>
             </li>
