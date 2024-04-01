@@ -93,6 +93,11 @@
         </div>
         
         <div class="row justify-content-center  ">
+        @if(session('error_existe'))
+          <div class="alert alert-danger" role="alert">
+          El codigo o cedula ya se encuentran registrados en nuestro sistema
+          </div>
+        @endif
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
             <form action="{{ url('estudiantes') }}" method="post" role="form" class="php-email-form">
             @csrf
@@ -140,6 +145,7 @@
            El correo o la contraseña son incorrectos
           </div>
         @endif
+       
    
         <div class="row justify-content-center  ">
           <!-- inicio de sesion -->

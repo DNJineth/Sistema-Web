@@ -12,13 +12,13 @@
     <title>MentoryData</title>
 
     <!-- Custom fonts for this template-->
-    <link href="dash/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{!! asset('dash/vendor/fontawesome-free/css/all.min.css') !!}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="dash/css/sb-admin-2.css" rel="stylesheet">
+    <link href="{!! asset('dash/css/sb-admin-2.css') !!}" rel="stylesheet">
 
 </head>
 
@@ -76,7 +76,7 @@
             </div>
                <!-- Nav Item - Charts -->
                <li class="nav-item">
-                <a class="nav-link" href="{{ route('gestion-curso') }}">
+                <a class="nav-link"  href="{{ url('gestion-curso/' . session('usuario')->id) }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Progreso de Cursos</span></a>
             </li>
@@ -106,6 +106,19 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Estudiantes</span></a>
             </li>
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Gestión Notas
+            </div>
+                <!-- Nav Item - Charts -->
+                <li class="nav-item">
+                <a class="nav-link" href="{{ route('notas_estudiante') }}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Notas estudiantes</span></a>
+            </li>
+            
             @endif
           
            
@@ -188,7 +201,7 @@
                                     {{ session('usuario')->Nombres_completos }}
                                 @endif</span>
                                 <img class="img-profile rounded-circle"
-                                    src="dash/img/undraw_profile.svg">
+                                    src="{!! asset('dash/img/undraw_profile.svg') !!}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -261,21 +274,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="dash/vendor/jquery/jquery.min.js"></script>
-    <script src="dash/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{!! asset('dash/vendor/jquery/jquery.min.js') !!}"></script>
+    <script src="{!! asset('dash/vendor/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="dash/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{!! asset('dash/vendor/jquery-easing/jquery.easing.min.js') !!}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="dash/js/sb-admin-2.min.js"></script>
+    <script src="{!! asset('dash/js/sb-admin-2.min.js') !!}"></script>
 
     <!-- Page level plugins -->
-    <script src="dash/vendor/chart.js/Chart.min.js"></script>
+    <script src="{!! asset('dash/vendor/chart.js/Chart.min.js') !!}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="dash/js/demo/chart-area-demo.js"></script>
-    <script src="dash/js/demo/chart-pie-demo.js"></script>
+    <script src="{!! asset('dash/js/demo/chart-area-demo.js') !!}"></script>
+    <script src="{!! asset('dash/js/demo/chart-pie-demo.js') !!}"></script>
 
 </body>
 

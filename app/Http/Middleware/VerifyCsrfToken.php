@@ -13,5 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'unity/login',
+        'unity/progreso',
+        'unity/nota',
     ];
 }

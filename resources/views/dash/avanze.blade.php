@@ -21,7 +21,8 @@
                     <canvas id="myPieChart"></canvas>
                 </div>
                 <hr>
-                Avanze de colas
+                Avance de Colas {{ $resultado["colas"] ?? 0 }}/5
+
                
             </div>
         </div>
@@ -38,7 +39,7 @@
                     <canvas id="myPieChart1"></canvas>
                 </div>
                 <hr>
-                Avanze de Pilas
+                Avance de Pilas {{ $resultado["pilas"] ?? 0 }}/5
             </div>
         </div>
     </div>
@@ -55,11 +56,111 @@
                     <canvas id="myPieChart2"></canvas>
                 </div>
                 <hr>
-                Avanze de Arboles
+        
+                Avance de Arboles {{ $resultado["arboles"] ?? 0 }}/5
             </div>
         </div>
     </div>
 </div>
 
 </div>
+<script src="{!! asset('dash/vendor/chart.js/Chart.min.js') !!}"></script>
+<script>
+
+
+// Pie Chart Example
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Progreso", "Pendiente"],
+    datasets: [{
+      data: [{{ $resultado["colas"] ?? 0 }}, 5],
+      backgroundColor: ['#FF8041', '#B61435'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+
+
+var ctx = document.getElementById("myPieChart1");
+var myPieChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Progreso", "Pendiente"],
+    datasets: [{
+      data: [{{ $resultado["pilas"] ?? 0 }}, 5],
+      backgroundColor: ['#FF8041', '#B61435'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+
+var ctx = document.getElementById("myPieChart2");
+var myPieChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Progreso", "Pendiente"],
+    datasets: [{
+      data: [{{ $resultado["arboles"] ?? 0 }}, 5],
+      backgroundColor: ['#FF8041', '#B61435'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+</script>
 @endsection

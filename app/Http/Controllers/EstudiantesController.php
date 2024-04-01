@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use DB;
 use \stdClass;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Http\Controllers\ProgresoController;
+use Illuminate\Support\Facades\Validator;
 class EstudiantesController extends Controller
 {
     /**
@@ -22,7 +23,37 @@ class EstudiantesController extends Controller
         return view('dash.estudiantes', compact('estudiantes'))->with('success', 'Datos listados correctamente');
        
     }
+    public function notas_evaluacion()
+    {
 
+       $evaluaciones = DB::table('evaluacions')
+        ->join('estudiantes', 'evaluacions.estudiantes_id', '=', 'estudiantes.id')
+        ->select('estudiantes.Codigo_estudiante', 'estudiantes.Nombres_completos', 'estudiantes.cedula', DB::raw("GROUP_CONCAT(tema_evaluacion, ':', nota) AS evaluaciones"))
+        ->groupBy('evaluacions.estudiantes_id', 'estudiantes.Codigo_estudiante', 'estudiantes.Nombres_completos', 'estudiantes.cedula')
+        ->get();
+
+    $evaluaciones_array = [];
+
+    foreach ($evaluaciones as $evaluacion) {
+        $evaluaciones_individuales = explode(',', $evaluacion->evaluaciones);
+        $evaluaciones_estudiante = [];
+        foreach ($evaluaciones_individuales as $evaluacion_individual) {
+            list($tema, $nota) = explode(':', $evaluacion_individual);
+            $evaluaciones_estudiante[$tema] = $nota;
+        }
+        $evaluaciones_array[] = [
+            'Codigo_estudiante' => $evaluacion->Codigo_estudiante,
+            'Nombres_completos' => $evaluacion->Nombres_completos,
+            'cedula' => $evaluacion->cedula,
+            'evaluaciones' => $evaluaciones_estudiante
+        ];
+    }
+
+
+        //return response($estudiantes);
+        return view('dash.evaluacion', compact('evaluaciones_array'))->with('success', 'Datos listados correctamente');
+       
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -41,10 +72,16 @@ class EstudiantesController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'cedula' => 'required|unique:estudiantes,cedula',
+            'Codigo' => 'required|unique:estudiantes,Codigo_estudiante',
+           
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->with('error_existe', 'Datos guardados correctamente');
+        }
 
-       
         $crear_estudiante=new Estudiantes;
-        
         $crear_estudiante->cedula=$request->cedula;
         $crear_estudiante->Codigo_estudiante=$request->Codigo;
         $crear_estudiante->Nombres_completos=$request->nombres;
@@ -58,8 +95,10 @@ class EstudiantesController extends Controller
         'Nombres_completos' => $crear_estudiante->Nombres_completos,
         'correo' => $crear_estudiante->correo,
     ];
-   
     session(['usuario' => $crear_estudiante]);
+    session()->forget('admin');
+    session(['rol' => "estudiante"]);
+
     return Redirect::route('gestion-perfil');
     // Redirigir a la vista de dashboard con los datos
     return view('dash.perfil', compact('datos'))->with('success', 'Datos guardados correctamente');
@@ -180,9 +219,13 @@ class EstudiantesController extends Controller
         return view('dash.perfil', compact('usuarioAlmacenado'))->with('success', 'Datos listados correctamente');
     }
 
-    public function avanze_curso(){
+    public function avanze_curso($id_estudiante){
+        
+        $otroControlador = new ProgresoController();
+        $resultado = $otroControlador->obtenerInformacionPorEstudiante($id_estudiante);
         $curso=[];
-        return view('dash.avanze', compact('curso'))->with('success', 'Datos listados correctamente');
+     
+        return view('dash.avanze', compact('curso',"resultado"))->with('success', 'Datos listados correctamente');
 
     }
 }
