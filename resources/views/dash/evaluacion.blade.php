@@ -14,9 +14,9 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Cédula</th>
-                        <th>Codigo Estudiante</th>
-                        <th>Nombres Completos</th>
+                        <th>Código Estudiante</th>
+                        <th>Nombre Estudiante</th>
+                        <th>No documento</th>
                         
                         <th>Nota</th>
                     </tr>
