@@ -9,6 +9,8 @@ use \stdClass;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ProgresoController;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\emailsremember;
+use Illuminate\Support\Facades\Mail;
 class EstudiantesController extends Controller
 {
     /**
@@ -227,5 +229,55 @@ class EstudiantesController extends Controller
      
         return view('dash.avanze', compact('curso',"resultado"))->with('success', 'Datos listados correctamente');
 
+    }
+
+    public function enviar_correo($cedula){
+
+        $estudiante=DB::table("estudiantes")->where("cedula","=",$cedula)->first();
+        $informacion="Prueba correo";
+
+        $data_array=[
+            "Nombres_completos"=>$estudiante->Nombres_completos,
+            "correo"=>$estudiante->correo,
+            "codigo"=> self::getUrlWithSuffix("/".$estudiante->password)
+        ];
+        
+        Mail::to($estudiante->correo)->send( new emailsremember($data_array));
+        return response(["data"=>$data_array]);
+    }
+
+    function getUrlWithSuffix($codigo) {
+    
+        $url = url()->current();// Obtener la URL actual
+        $url .= $codigo; // Concatenar "/1223" al final de la URL
+        
+        return $url;
+    }
+
+    public function cambiar_contra($cedula,$codigo){
+        return view("restablecer",compact("cedula","codigo"));
+        return response(["ce"=>$cedula,"c"=>$codigo]);
+    }
+    public function editar_contra(Request $request){
+       
+        if($request->password != $request->password_1){
+            return redirect()->back()->with('dif', 'Las contraseñas no cohinciden');
+        }
+        $est = DB::table('estudiantes')
+        ->where('cedula', $request->cedula)
+        ->where('password', $request->Codigo)
+        ->get();
+    
+    if ($est->count() > 0) {
+        DB::table('estudiantes')
+            ->where('cedula', $request->cedula)
+            ->where('password', $request->Codigo)
+            ->update(['password' => md5($request->password)]);
+            return redirect()->route('salir');
+            return response(["ates"=>$request->all() ,"ahoora"=>$est]);
+    } else {
+        return redirect()->back()->with('keybat', 'Las contraseñas no cohinciden');
+    }
+       
     }
 }

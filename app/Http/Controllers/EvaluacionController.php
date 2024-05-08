@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\evaluacion;
 use Illuminate\Http\Request;
-
+use DB;
 class EvaluacionController extends Controller
 {
     /**
@@ -95,5 +95,20 @@ class EvaluacionController extends Controller
     public function destroy(evaluacion $evaluacion)
     {
         //
+    }
+    public function verificar($id,$tema){
+            $evaluacion_existente = DB::table('evaluacions')
+            ->where('estudiantes_id', $id)
+            ->where('tema_evaluacion', $tema)
+            ->exists();
+            $permitir_registro;
+        // Si $evaluacion_existente es true, significa que ya existe una evaluación para el estudiante con ese tema
+        if ($evaluacion_existente) {
+            $permitir_registro = false;
+        } else {
+            $permitir_registro = true;
+        }
+
+        return response(["data"=>$permitir_registro]);
     }
 }

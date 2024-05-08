@@ -160,7 +160,7 @@
               <img src="assets/img/team/cm.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>Camila Muñuz</h4>
+                  <h4>Camila Muñoz</h4>
                   <span>Developer</span>
                 </div>
                 <div class="social">
@@ -175,11 +175,11 @@
 
           <div class="col-xl-3 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
             <div class="member">
-              <img src="" class="img-fluid" alt="">
+              <img src="assets/img/team/asesor.jpeg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>William Anderson</h4>
-                  <span>CTO</span>
+                  <span>Asesor</span>
                 </div>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
@@ -409,7 +409,7 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 

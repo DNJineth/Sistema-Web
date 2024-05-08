@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inner Page - Ninestars Bootstrap Template</title>
+  <title>MentoryData</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -75,7 +75,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Registro de estudiantes</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li>Registro</li>
           </ol>
         </div>
@@ -164,6 +164,7 @@
                 </div>
               </div>
               <div class="text-center"><button type="submit">Inicia sesión</button></div>
+              <div class="text-center"><a onclick="enviar_correo()">¿Olvidaste tu contraseña?</a></div>
             </form>
           </div>
         </div>
@@ -229,6 +230,58 @@
  
   <script src="assets/js/main.js"></script>
   <script src="assets/js/myscript.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    function enviar_correo(){
+
+    
+swal({
+  text: 'Número de cédula',
+  content: "input",
+  button: {
+    text: "Enviar",
+    closeModal: false,
+  },
+})
+.then(name => {
+  if (!name) throw null;
+  let cadena=`http://127.0.0.1:8000/recuperacion_contrasena/${name}`
+  
+  return fetch(cadena);
+})
+.then(results => {
+  
+  return results.json();
+
+})
+.then(json => {
+  const movie = json.data;
+ 
+if(movie == null){
+  return swal("Estudiante no encontrado");
+}
+
+swal({
+    title: "Se ha enviado un correo al estudiante:",
+    text: movie.Nombres_completos
+    
+  });
+  
+  
+
+ 
+ 
+})
+.catch(err => {
+  if (err) {
+    swal("Ocurrio un error", "la respuesta fallo", "error");
+  } else {
+    swal.stopLoading();
+    swal.close();
+  }
+});
+}
+  </script>
   @if(session('error'))
   <script >
      $(".registro").hide();

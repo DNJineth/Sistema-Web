@@ -27,10 +27,14 @@ Route::post("login","EstudiantesController@login_web");
 Route::post("unity/login","EstudiantesController@login");
 Route::post("unity/progreso","ProgresoController@store");
 Route::post("unity/nota","EvaluacionController@store");
+Route::get("unity/evaluacion/{id}/{tema}","EvaluacionController@verificar");
+
 
 Route::get("estadistica/{estudiante_id}","ProgresoController@obtenerInformacionPorEstudiante");
+Route::get("recuperacion_contrasena/{estudiante_id}","EstudiantesController@enviar_correo");
+Route::get("recuperacion_contrasena/{estudiante_id}/{codigo}","EstudiantesController@cambiar_contra");
 
-
+Route::post("changepass","EstudiantesController@editar_contra");
 Route::get("prueba", function(){
     return response(["data"=>"hola"]);
 });
