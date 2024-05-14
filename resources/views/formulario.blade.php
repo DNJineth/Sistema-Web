@@ -245,7 +245,7 @@ swal({
 })
 .then(name => {
   if (!name) throw null;
-  let cadena=`http://127.0.0.1:8000/recuperacion_contrasena/${name}`
+  let cadena=`https://mentorydata.tech/recuperacion_contrasena/${name}`
   
   return fetch(cadena);
 })
