@@ -174,9 +174,11 @@ class EstudiantesController extends Controller
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function show(Estudiantes $estudiantes)
+    public function show($Estudiante)
     {
-        //
+        $estudiante = Estudiantes::findOrFail($Estudiante);
+        return view("dash.actualizar",compact('estudiante'));
+       return response(["data"=>$estudiante]);
     }
 
     /**
@@ -185,9 +187,15 @@ class EstudiantesController extends Controller
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estudiantes $estudiantes)
+    public function edit($Id,Request $request)
     {
-        //
+        $actualizar_estudiante = Estudiantes::findOrFail($Id);
+        $actualizar_estudiante->cedula=$request->cedula;
+        $actualizar_estudiante->Codigo_estudiante=$request->Codigo;
+        $actualizar_estudiante->Nombres_completos=$request->nombres;
+        $actualizar_estudiante->correo=$request->email;
+        $actualizar_estudiante->save();
+        return Redirect::route('gestion-estudiantes')->with('update', 'Estudiante eliminado exitosamente.');;
     }
 
     /**
@@ -208,9 +216,14 @@ class EstudiantesController extends Controller
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estudiantes $estudiantes)
+    public function destroy($Estudiante)
     {
-        //
+        $estudiante = Estudiantes::findOrFail($Estudiante);
+        $estudiante->delete();
+
+        return redirect()->back()
+        ->with('eliminado', 'Estudiante eliminado exitosamente.');
+        return response(["data"=>$Estudiante]);
     }
 
     public function perfil(){

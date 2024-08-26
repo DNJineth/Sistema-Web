@@ -46,6 +46,13 @@ Route::get("notas_estudiante/","EstudiantesController@notas_evaluacion")->name('
 Route::get('gestion-estudiantes', "EstudiantesController@index")->name('gestion-estudiantes');
 Route::get('gestion-perfil', "EstudiantesController@perfil")->name('gestion-perfil');
 Route::get('gestion-curso/{id_estudiante}', "EstudiantesController@avanze_curso")->name('gestion-curso');
+
+
+//
+Route::post("deleteestudiante/{Estudiante}","EstudiantesController@destroy")->name('estudiantes_eliminar');
+Route::get('showestudiante/{Estudiante}', "EstudiantesController@show")->name('estudiantes_actualizar');
+Route::post("actualizarestudiante/{Id}","EstudiantesController@edit")->name('actualizar_fin');
+
 ///PROTOCOLOS HTTP
 /// GET para obtener
 /// POST para enviar datos

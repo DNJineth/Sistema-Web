@@ -4,6 +4,16 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Lista de estudiantes</h1>
+@if (session('eliminado'))
+    <div class="alert alert-success" role="alert">
+    Estudiante eliminado con exito
+    </div>
+@endif
+@if (session('update'))
+    <div class="alert alert-success" role="alert">
+    Estudiante actualizado con exito
+    </div>
+@endif
 
 
 <!-- DataTales Example -->
@@ -27,20 +37,22 @@
                 @foreach($estudiantes as $estudiante)
                     <tr>
                         <td>{{ $estudiante->cedula }}</td>
-                        <td>{{ $estudiante->Codigo_estudiante }}t</td>
+                        <td>{{ $estudiante->Codigo_estudiante }}</td>
                         <td>{{ $estudiante->Nombres_completos }}</td>
                         <td>{{ $estudiante->correo }}</td>
                         <td class="text-center">
-                            <a href="#" class="btn btn-info btn-circle">
+                            <a href="{{route('estudiantes_actualizar',$estudiante->id)}}" class="btn btn-info btn-circle">
                                 <i class="fas fa-info-circle"></i>
                             </a>
                         </td>
                         <td class="text-center">
-                                <a href="#" class="btn btn-danger btn-circle">
+                            <form action="{{ route('estudiantes_eliminar', $estudiante->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-circle">
                                     <i class="fas fa-trash"></i>
-                                </a>
+                                </button>
+                            </form>
                         </td>
-                        
                     </tr>
                 @endforeach
                  
